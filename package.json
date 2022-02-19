@@ -1,0 +1,23 @@
+{
+  "name": "shoppinglist-electron",
+  "version": "1.0.0",
+  "description": "shopping-list desktop app",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saiffardin/shoppingList-electron.git"
+  },
+  "author": "Saif Chowdhury",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/saiffardin/shoppingList-electron/issues"
+  },
+  "homepage": "https://github.com/saiffardin/shoppingList-electron#readme",
+  "devDependencies": {
+    "electron": "^17.0.1"
+  }
+}
