@@ -2,6 +2,8 @@
 
 2. We write html code, the object of `BrowserWindow` class *loads* our html
 
+---
+
 3. To change the **menubar** of our window, we have to use `buildFromTemplate` method of `Menu` class. And pass our *custom-menubar* template
 
     ```js
@@ -41,3 +43,16 @@
         }
     ];
     ```
+---
+
+5. Things we have use to send and receive data between the files are:
+    - `ipcRenderer.send()` : we've used this to **send** data from *html* to *js*
+    - `ipcMain.on()` : we've used this to **catch** data, which is coming from *html* to *js*
+    - `webContents.send()` : we've used this to **send** data from *js* to *html*
+    - `ipcRenderer.on()` : we've used this to **catch** data, which is from *js* to *html*
+
+    <br>
+6. HTML files are using `ipcRenderer` 
+7. HTML files are using `ipcMain` and `webContents`
+
+---
