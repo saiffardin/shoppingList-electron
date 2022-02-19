@@ -59,15 +59,20 @@ const mainMenuTemplate = [
     {
         label: 'File',
         submenu: [
+            // submenu 1 - Add Item
             {
                 label: 'Add Item',
                 click() {
                     createAddWindow()
                 }
             },
+
+            // submenu 2 - Clear Items
             {
                 label: 'Clear Items'
             },
+
+            // submenu 3 - Quit
             {
                 label: 'Quit',
                 accelerator: process.platform === 'darwin' ? 'Command+Q' : 'Ctrl+Q',
