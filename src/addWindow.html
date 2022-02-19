@@ -24,8 +24,8 @@
             const item = document.querySelector('#item').value;
 
             // we're going to use 'ipcRenderer' to send 'item' to 'main.js'
-
-            ipcRenderer.send('item:add',item);
+            ipcRenderer.send('item:add', item);
+            document.querySelector('#item').value = "";
         }
 
         form.addEventListener('submit', submitForm);
