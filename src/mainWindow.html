@@ -1,9 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>Shopping List</title>
 </head>
+
 <body>
     <h1>ShoppingList</h1>
+
+    <ul></ul>
+
+    <script>
+        const {ipcRenderer} = require('electron');
+        const ul = document.querySelector('ul');
+
+        ipcRenderer.on('item:add', (e, item) => {
+            const li = document.createElement('li');
+            // ekhn list er moddhe jei text ta thakbe sheta banabo
+            const itemText = document.createTextNode(item);
+
+            li.appendChild(itemText);
+            ul.appendChild(li);
+        });
+
+    </script>
 </body>
+
 </html>

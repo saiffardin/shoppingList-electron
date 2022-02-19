@@ -1,4 +1,4 @@
-const {app, BrowserWindow, Menu} = require('electron');
+const {app, BrowserWindow, Menu, ipcMain} = require('electron');
 const url = require('url');
 const path = require('path');
 
@@ -18,7 +18,12 @@ const createNewWindow = (browserWindowObj, htmlFileName) => {
 // Listen for app to be ready
 app.on('ready', () => {
     // Create new window
-    mainWindow = new BrowserWindow({});
+    mainWindow = new BrowserWindow({
+        webPreferences: {
+            nodeIntegration: true,
+            contextIsolation: false
+        }
+    });
     createNewWindow(mainWindow, 'mainWindow.html');
 
     // -------------------------------- 
@@ -42,7 +47,11 @@ function createAddWindow() {
     addWindow = new BrowserWindow({
         width: 300,
         height: 200,
-        title: 'Add Shopping List Item'
+        title: 'Add Shopping List Item',
+        webPreferences: {
+            nodeIntegration: true,
+            contextIsolation: false
+        }
     });
 
     createNewWindow(addWindow, 'addWindow.html');
@@ -53,6 +62,15 @@ function createAddWindow() {
         addWindow = null;
     })
 }
+
+// -------------------------------- 
+/** Catch item:add */
+ipcMain.on('item:add', (e, item) => {
+    // console.log(item);
+    mainWindow.webContents.send('item:add', item);
+    addWindow.close();
+});
+
 
 // Create menu template
 const mainMenuTemplate = [
