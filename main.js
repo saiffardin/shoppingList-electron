@@ -5,23 +5,25 @@ const path = require('path');
 let mainWindow;
 let addWindow;
 
-// Listen for app to be ready
-app.on('ready', () => {
-    // Create new window
-    mainWindow = new BrowserWindow({})
+const createNewWindow = (browserWindowObj, htmlFileName) => {
 
     // Load html into window
-    // win.loadFile('index.html')
-    mainWindow.loadURL(url.format({
-        pathname: path.join(__dirname, 'mainWindow.html'),
+    browserWindowObj.loadURL(url.format({
+        pathname: path.join(__dirname, htmlFileName),
         protocol: 'file',
         slashes: true
     }));
-    // mainWindow.loadURL("file://dirname/mainWindow.html")
+}
+
+// Listen for app to be ready
+app.on('ready', () => {
+    // Create new window
+    mainWindow = new BrowserWindow({});
+    createNewWindow(mainWindow, 'mainWindow.html');
 
     // -------------------------------- 
     /** Quit app when main window is closed */
-    mainWindow.on('closed',()=>{
+    mainWindow.on('closed', () => {
         app.quit();
     })
 
@@ -41,19 +43,13 @@ function createAddWindow() {
         width: 300,
         height: 200,
         title: 'Add Shopping List Item'
-    })
+    });
 
-    // Load html into window
-    // win.loadFile('index.html')
-    addWindow.loadURL(url.format({
-        pathname: path.join(__dirname, 'addWindow.html'),
-        protocol: 'file',
-        slashes: true
-    }));
+    createNewWindow(addWindow, 'addWindow.html');
 
     // -------------------------------- 
     /** Garbage collection handler */
-    addWindow.on('closed',()=>{
+    addWindow.on('closed', () => {
         addWindow = null;
     })
 }
@@ -84,7 +80,7 @@ const mainMenuTemplate = [
 ];
 
 // If mac, add empty object to menu
-if (process.platform==='darwin') {
+if (process.platform === 'darwin') {
     mainMenuTemplate.unshift({})
 }
 
@@ -96,7 +92,7 @@ if (process.env.NODE_ENV !== 'production') {
             {
                 label: 'Toggle Devtools',
                 accelerator: process.platform === 'darwin' ? 'Command+I' : 'Ctrl+I',
-                click(item,focusedWindow) {
+                click(item, focusedWindow) {
                     focusedWindow.toggleDevTools();
                 }
             },
