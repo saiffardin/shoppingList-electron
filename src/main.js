@@ -1,6 +1,13 @@
+// npm run package-win
+
 const {app, BrowserWindow, Menu, ipcMain} = require('electron');
 const url = require('url');
 const path = require('path');
+
+// SET ENV
+// process.env.NODE_ENV = 'production';
+process.env.NODE_ENV = 'development';
+
 
 let mainWindow;
 let addWindow;
@@ -31,6 +38,7 @@ app.on('ready', () => {
     mainWindow.on('closed', () => {
         app.quit();
     })
+
 
     // -------------------------------- 
     /** Changing Menu of our window */
@@ -91,7 +99,7 @@ const mainMenuTemplate = [
             // submenu 2 - Clear Items
             {
                 label: 'Clear Items',
-                click(){
+                click() {
                     mainWindow.webContents.send('item:clear');
                 }
             },
