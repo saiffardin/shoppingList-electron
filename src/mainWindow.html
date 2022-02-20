@@ -2,13 +2,18 @@
 <html lang="en">
 
 <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <title>Shopping List</title>
 </head>
 
 <body>
-    <h1>ShoppingList</h1>
+    <nav>
+        <div class="nav-wrapper ">
+            <a class="brand-logo center ">Shopping List</a>
+        </div>
+    </nav>
 
-    <ul></ul>
+    <ul class="collection"></ul>
 
     <script>
         const {ipcRenderer} = require('electron');
@@ -17,6 +22,7 @@
         // Catch add:item
         ipcRenderer.on('item:add', (e, item) => {
             const li = document.createElement('li');
+            li.className = 'collection-item';
             // ekhn list er moddhe jei text ta thakbe sheta banabo
             const itemText = document.createTextNode(item);
 
