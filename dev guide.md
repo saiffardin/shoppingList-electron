@@ -53,6 +53,6 @@
 
     <br>
 6. HTML files are using `ipcRenderer` 
-7. HTML files are using `ipcMain` and `webContents`
+7. JS files are using `ipcMain` and `webContents`
 
 ---
